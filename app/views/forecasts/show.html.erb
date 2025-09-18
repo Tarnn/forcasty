@@ -1,0 +1,156 @@
+<!-- Back Navigation -->
+<div class="mb-6">
+  <%= link_to root_path, class: "inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors" do %>
+    <svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+    </svg>
+    Back to search
+  <% end %>
+</div>
+
+<!-- Weather Results -->
+<div class="space-y-8 animate-fade-in">
+  <!-- Location Header -->
+  <div class="text-center">
+    <div class="flex items-center justify-center mb-4">
+      <svg class="h-8 w-8 text-primary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+      </svg>
+      <h1 class="text-2xl font-bold text-foreground">
+        <%= @view_model.full_address_display %>
+      </h1>
+    </div>
+    
+    <!-- Cache Status Badge -->
+    <div class="flex justify-center mb-6">
+      <span class="<%= @view_model.cache_status_css_class %> inline-flex items-center">
+        <% if @view_model.from_cache? %>
+          <svg class="mr-1.5 h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+        <% else %>
+          <svg class="mr-1.5 h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+          </svg>
+        <% end %>
+        <%= @view_model.cache_status_message %>
+      </span>
+    </div>
+  </div>
+
+  <!-- Main Weather Card -->
+  <div class="max-w-md mx-auto">
+    <div class="weather-card text-center">
+      <div class="card-content py-8">
+        <!-- Weather Icon -->
+        <div class="mb-6">
+          <svg class="weather-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
+          </svg>
+        </div>
+
+        <!-- Current Temperature -->
+        <div class="mb-6">
+          <div class="temperature-display">
+            <%= @view_model.formatted_current_temp %>
+          </div>
+          <p class="text-muted-foreground">Current Temperature</p>
+        </div>
+
+        <!-- High/Low Temperatures -->
+        <% if @view_model.high_low_available? %>
+          <div class="grid grid-cols-2 gap-4 pt-6 border-t border-border">
+            <div class="text-center">
+              <div class="text-2xl font-semibold text-red-500 mb-1">
+                <%= @view_model.formatted_high_temp %>
+              </div>
+              <p class="text-sm text-muted-foreground">High</p>
+            </div>
+            <div class="text-center">
+              <div class="text-2xl font-semibold text-blue-500 mb-1">
+                <%= @view_model.formatted_low_temp %>
+              </div>
+              <p class="text-sm text-muted-foreground">Low</p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Additional Weather Info Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+    <div class="card">
+      <div class="card-content py-6">
+        <div class="flex items-center">
+          <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mr-4">
+            <svg class="h-6 w-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-card-foreground">Weather Source</h3>
+            <p class="text-sm text-muted-foreground">Open-Meteo API</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-content py-6">
+        <div class="flex items-center">
+          <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mr-4">
+            <svg class="h-6 w-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-card-foreground">Cache Duration</h3>
+            <p class="text-sm text-muted-foreground">30 minutes by ZIP code</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto pt-8">
+    <%= link_to root_path, 
+        class: "btn-primary h-12 text-base font-semibold transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]" do %>
+      <svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+      </svg>
+      New Search
+    <% end %>
+    
+    <%= link_to "javascript:window.location.reload()", 
+        class: "btn-outline h-12 text-base font-medium transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]" do %>
+      <svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+      </svg>
+      Refresh
+    <% end %>
+  </div>
+
+  <!-- Quick Examples -->
+  <div class="text-center pt-8 border-t border-border">
+    <h3 class="text-lg font-semibold text-foreground mb-4">Try Other Locations</h3>
+    <div class="flex flex-wrap justify-center gap-2">
+      <% [
+        "Golden Gate Bridge, San Francisco, CA",
+        "Space Needle, Seattle, WA",
+        "Hollywood Sign, Los Angeles, CA"
+      ].each do |location| %>
+        <%= form_with url: forecasts_path, scope: :forecast, method: :post, local: true, 
+                      class: "inline-block" do |f| %>
+          <%= f.hidden_field :address, value: location %>
+          <%= f.submit location.split(',').first, 
+              class: "inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-colors cursor-pointer" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,115 @@
+# Bundler
+/.bundle
+/vendor/bundle
+
+# Logs and temp files
+/log/*
+!/log/.keep
+/tmp/*
+!/tmp/.keep
+!/tmp/pids/
+!/tmp/pids/.keep
+!/tmp/storage/
+!/tmp/storage/.keep
+/tmp/cache/*
+/tmp/pids/*
+/tmp/storage/*
+
+# Storage
+/storage/*
+!/storage/.keep
+
+# Credentials and secrets
+/config/master.key
+/config/credentials/*.key
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Databases
+/db/*.sqlite3
+/db/*.sqlite3-*
+/db/*.sqlite3-journal
+
+# Coverage and test reports
+/coverage/
+/spec/reports/
+
+# OS/editor files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+/.vscode/
+/.idea/
+*.swp
+*.swo
+*~
+.byebug_history
+
+# Ruby/Rails specific
+*.gem
+*.rbc
+/.config
+/InstalledFiles
+/pkg/
+/spec/reports/
+/test/tmp/
+/test/version_tmp/
+/tmp/
+
+# Bootsnap cache (all cache files)
+/tmp/cache/
+/tmp/cache/bootsnap/
+/tmp/cache/bootsnap/**/*
+
+# Spring
+/spring/*.pid
+
+# Node (not used, but safe to ignore if added later)
+/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Assets (compiled)
+/public/assets/
+/public/packs/
+/public/packs-test/
+
+# Yarn
+.yarn-integrity
+
+# RSpec
+/spec/examples.txt
+
+# Simplecov
+/coverage/
+
+# Documentation
+/doc/
+/rdoc/
+
+# Server and process files
+/tmp/pids/*
+/tmp/sockets/*
+/tmp/restart.txt
+*.pid
+
+# Compiled Tailwind CSS (regenerated on build)
+/app/assets/builds/*
+!/app/assets/builds/.keep
+
+# Rails cache files
+/tmp/cache/assets/
+/tmp/cache/sass/
+
+# Log files (development and test)
+/log/development.log
+/log/test.log
+/log/production.log
