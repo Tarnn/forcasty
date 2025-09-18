@@ -16,14 +16,13 @@ Rails.application.configure do
 
   config.log_tags = [ :request_id ]
   config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
-  config.action_mailer.perform_caching = false
   config.i18n.fallbacks = true
   config.active_support.report_deprecations = false
   config.active_record.attributes_for_inspect = [ :id ]
 
-  # Railway-specific host configuration
-  if ENV['RAILWAY_ENVIRONMENT'].present?
-    config.hosts.clear
+  # Use Railway environment variable to control host checking
+  if ENV['DISABLE_HOST_CHECK'] == 'true'
+    config.host_authorization = { exclude: ->(request) { true } }
   else
     config.hosts << "forcasty-production.up.railway.app"
     config.hosts << /.*\.up\.railway\.app/
