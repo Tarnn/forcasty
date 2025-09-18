@@ -21,11 +21,11 @@ Rails.application.configure do
   config.active_support.report_deprecations = false
   config.active_record.attributes_for_inspect = [ :id ]
 
-  # Allow all Railway domains
-  config.hosts << "forcasty-production.up.railway.app"
-  config.hosts << /.*\.up\.railway\.app/
-  
-  # Also allow localhost and any Railway internal domains
-  config.hosts << "localhost"
-  config.hosts << /.*\.railway\.internal/
+  # Railway-specific host configuration
+  if ENV['RAILWAY_ENVIRONMENT'].present?
+    config.hosts.clear
+  else
+    config.hosts << "forcasty-production.up.railway.app"
+    config.hosts << /.*\.up\.railway\.app/
+  end
 end
