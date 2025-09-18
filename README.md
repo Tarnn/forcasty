@@ -6,6 +6,7 @@ Weather forecast app built with Rails. Enter an address, get current weather con
 
 ```bash
 bundle install
+rails tailwindcss:build
 bin/rails server
 ```
 
