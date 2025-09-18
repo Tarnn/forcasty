@@ -4,6 +4,8 @@ Weather forecast app built with Rails. Enter an address, get current weather con
 
 ## Demo
 
+🌐 **Live Demo**: https://forcasty-production.up.railway.app/
+
 [![Demo Video](https://img.youtube.com/vi/ZTKRNAD0I5A/maxresdefault.jpg)](https://youtu.be/ZTKRNAD0I5A)
 
 [🎥 Watch the demo](https://youtu.be/ZTKRNAD0I5A)
